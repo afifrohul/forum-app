@@ -1,5 +1,6 @@
 const api = (() => {
   const BASE_URL = 'https://forum-api.dicoding.dev/v1';
+  // const BASE_URL = 'http://localhost:3000/v1';
 
   async function _fetchWithAuth(url, options = {}) {
     return fetch(url, {

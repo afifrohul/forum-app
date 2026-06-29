@@ -1,18 +1,17 @@
-import { ActionType as ActionTypeDetailThread } from './action';
-import { ActionType as ActionTypeThread } from '@/states/threads/action';
+import { ActionType } from './action';
 
 function threadDetailReducer(threadDetail = null, action = {}) {
   switch (action.type) {
-    case ActionTypeDetailThread.RECEIVE_THREAD_DETAIL:
+    case ActionType.RECEIVE_THREAD_DETAIL:
       return action.payload.threadDetail;
-    case ActionTypeDetailThread.CLEAR_THREAD_DETAIL:
+    case ActionType.CLEAR_THREAD_DETAIL:
       return null;
-    case ActionTypeDetailThread.ADD_COMMENT:
+    case ActionType.ADD_COMMENT:
       return {
         ...threadDetail,
         comments: [action.payload.comment, ...(threadDetail.comments || [])],
       };
-    case ActionTypeThread.UP_VOTE_THREAD:
+    case ActionType.UP_VOTE_THREAD_DETAIL:
       return {
         ...threadDetail,
         upVotesBy: [...threadDetail.upVotesBy, action.payload.userId],
@@ -22,7 +21,7 @@ function threadDetailReducer(threadDetail = null, action = {}) {
             )
           : threadDetail.downVotesBy,
       };
-    case ActionTypeThread.DOWN_VOTE_THREAD:
+    case ActionType.DOWN_VOTE_THREAD_DETAIL:
       return {
         ...threadDetail,
         upVotesBy: threadDetail.upVotesBy.includes(action.payload.userId)
@@ -30,7 +29,7 @@ function threadDetailReducer(threadDetail = null, action = {}) {
           : threadDetail.upVotesBy,
         downVotesBy: [...threadDetail.downVotesBy, action.payload.userId],
       };
-    case ActionTypeThread.NEUTRAL_VOTE_THREAD:
+    case ActionType.NEUTRAL_VOTE_THREAD_DETAIL:
       return {
         ...threadDetail,
         upVotesBy: threadDetail.upVotesBy.includes(action.payload.userId)
@@ -42,7 +41,7 @@ function threadDetailReducer(threadDetail = null, action = {}) {
             )
           : threadDetail.downVotesBy,
       };
-    case ActionTypeDetailThread.UP_VOTE_COMMENT:
+    case ActionType.UP_VOTE_COMMENT:
       return {
         ...threadDetail,
         comments: threadDetail.comments.map((comment) => {
@@ -60,7 +59,7 @@ function threadDetailReducer(threadDetail = null, action = {}) {
           return threadDetail;
         }),
       };
-    case ActionTypeDetailThread.DOWN_VOTE_COMMENT:
+    case ActionType.DOWN_VOTE_COMMENT:
       return {
         ...threadDetail,
         comments: threadDetail.comments.map((comment) => {
@@ -76,7 +75,7 @@ function threadDetailReducer(threadDetail = null, action = {}) {
           return threadDetail;
         }),
       };
-    case ActionTypeDetailThread.NEUTRAL_VOTE_COMMENT:
+    case ActionType.NEUTRAL_VOTE_COMMENT:
       return {
         ...threadDetail,
         comments: threadDetail.comments.map((comment) => {

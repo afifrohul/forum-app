@@ -20,10 +20,10 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import {
-  asyncDownVoteThread,
-  asyncNeutralVoteThread,
-  asyncUpVoteThread,
-} from '@/states/threads/action';
+  asyncDownVoteThreadDetail,
+  asyncNeutralVoteThreadDetail,
+  asyncUpVoteThreadDetail,
+} from '@/states/threadDetail/action';
 
 export default function DetailThreadPage() {
   const { id } = useParams();
@@ -43,9 +43,9 @@ export default function DetailThreadPage() {
       alert('Sign in to up vote thread');
     } else {
       if (!threadDetail.upVotesBy.includes(authUser.id)) {
-        dispatch(asyncUpVoteThread(threadDetail.id));
+        dispatch(asyncUpVoteThreadDetail(threadDetail.id));
       } else {
-        dispatch(asyncNeutralVoteThread(threadDetail.id));
+        dispatch(asyncNeutralVoteThreadDetail(threadDetail.id));
       }
     }
   };
@@ -55,9 +55,9 @@ export default function DetailThreadPage() {
       alert('Sign in to up vote thread');
     } else {
       if (!threadDetail.downVotesBy.includes(authUser.id)) {
-        dispatch(asyncDownVoteThread(threadDetail.id));
+        dispatch(asyncDownVoteThreadDetail(threadDetail.id));
       } else {
-        dispatch(asyncNeutralVoteThread(threadDetail.id));
+        dispatch(asyncNeutralVoteThreadDetail(threadDetail.id));
       }
     }
   };
