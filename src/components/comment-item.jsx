@@ -59,20 +59,31 @@ export default function CommentItem({
             dangerouslySetInnerHTML={{ __html: comment.content }}
           />
         </div>
-        <div className="flex gap-3 items-center text-muted-foreground">
-          <div onClick={onUpVoteClick}>
-            <UpVoteButton
-              label={comment.upVotesBy.length}
-              upVotedComment={comment.upVotesBy.includes(authUser.id)}
-            />
+        {authUser ? (
+          <div className="flex gap-3 items-center text-muted-foreground">
+            <div onClick={onUpVoteClick}>
+              <UpVoteButton
+                label={comment.upVotesBy.length}
+                upVotedComment={comment.upVotesBy.includes(authUser.id)}
+              />
+            </div>
+            <div onClick={onDownVoteClick}>
+              <DownVoteButton
+                label={comment.downVotesBy.length}
+                downVotedComment={comment.downVotesBy.includes(authUser.id)}
+              />
+            </div>
           </div>
-          <div onClick={onDownVoteClick}>
-            <DownVoteButton
-              label={comment.downVotesBy.length}
-              downVotedComment={comment.downVotesBy.includes(authUser.id)}
-            />
+        ) : (
+          <div className="flex gap-3 items-center text-muted-foreground">
+            <div onClick={onUpVoteClick}>
+              <UpVoteButton label={comment.upVotesBy.length} />
+            </div>
+            <div onClick={onDownVoteClick}>
+              <DownVoteButton label={comment.downVotesBy.length} />
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

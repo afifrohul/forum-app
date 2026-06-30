@@ -117,18 +117,30 @@ export default function DetailThreadPage() {
           />
         </div>
         <div className="flex gap-3 items-center text-muted-foreground">
-          <div onClick={onUpVoteThreadClick}>
-            <UpVoteButton
-              label={threadDetail.upVotesBy.length}
-              upVotedThread={threadDetail.upVotesBy.includes(authUser.id)}
-            />
-          </div>
-          <div onClick={onDownVoteThreadClick}>
-            <DownVoteButton
-              label={threadDetail.downVotesBy.length}
-              downVotedThread={threadDetail.downVotesBy.includes(authUser.id)}
-            />
-          </div>
+          {authUser ? (
+            <div onClick={onUpVoteThreadClick}>
+              <UpVoteButton
+                label={threadDetail.upVotesBy.length}
+                upVotedThread={threadDetail.upVotesBy.includes(authUser.id)}
+              />
+            </div>
+          ) : (
+            <div onClick={onUpVoteThreadClick}>
+              <UpVoteButton label={threadDetail.upVotesBy.length} />
+            </div>
+          )}
+          {authUser ? (
+            <div onClick={onDownVoteThreadClick}>
+              <DownVoteButton
+                label={threadDetail.downVotesBy.length}
+                downVotedThread={threadDetail.downVotesBy.includes(authUser.id)}
+              />
+            </div>
+          ) : (
+            <div onClick={onDownVoteThreadClick}>
+              <DownVoteButton label={threadDetail.downVotesBy.length} />
+            </div>
+          )}
           <CommentButton label={threadDetail.comments.length} />
         </div>
       </div>
