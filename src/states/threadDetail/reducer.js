@@ -56,7 +56,7 @@ function threadDetailReducer(threadDetail = null, action = {}) {
                 : comment.downVotesBy,
             };
           }
-          return threadDetail;
+          return comment;
         }),
       };
     case ActionType.DOWN_VOTE_COMMENT:
@@ -72,7 +72,7 @@ function threadDetailReducer(threadDetail = null, action = {}) {
                 : comment.upVotesBy,
             };
           }
-          return threadDetail;
+          return comment;
         }),
       };
     case ActionType.NEUTRAL_VOTE_COMMENT:
@@ -92,7 +92,7 @@ function threadDetailReducer(threadDetail = null, action = {}) {
                 : comment.downVotesBy,
             };
           }
-          return threadDetail;
+          return comment;
         }),
       };
     default:
