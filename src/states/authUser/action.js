@@ -34,7 +34,8 @@ function asyncSetAuthUser({ email, password }) {
 
       dispatch(setAuthUserActionCreator(authUser));
     } catch (error) {
-      alert(error.message);
+      alert('Email or password is wrong')
+      // alert(error.message);
     }
     dispatch(hideLoading());
   };

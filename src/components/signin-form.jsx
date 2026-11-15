@@ -13,12 +13,18 @@ import { useNavigate } from 'react-router-dom';
 
 export function SigninForm({ className, ...props }) {
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const onSignin = ({ email, password }) => {
-    dispatch(asyncSetAuthUser({ email, password }));
+    if (!email) {
+      alert('"email" is not allowed to be empty');
+    } else if (!password) {
+      alert('"password" is not allowed to be empty');
+    } else {
+      dispatch(asyncSetAuthUser({ email, password }));
 
-    navigate('/')
+      navigate('/');
+    }
   };
 
   return (
